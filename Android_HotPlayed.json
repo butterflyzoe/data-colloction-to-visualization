@@ -1,0 +1,77 @@
+{
+    "job": {
+        "content": [
+            {
+                "reader": {
+                    "name": "txtfilereader",
+                    "parameter": {
+                        "path": ["E:/TapTap/Android_HotPlayed.csv"],
+                        "encoding": "GBK",
+	        "fieldDelimiter": ",",
+	        "skipHeader": "true",
+                        "column": [
+                            {
+                                "index": 0,
+                                "type": "string"
+                            },
+                            {
+                                "index": 1,
+                                "type": "string"
+                            },
+                            {
+                                "index": 2,
+                                "type": "string"
+                            },
+                            {
+                                "index": 3,
+                                "type": "string"
+                            },
+                            {
+                                "index": 4,
+                                "type": "string"
+                            },
+                            {
+                                "index": 5,
+                                "type": "string"
+                            },
+                            {
+                                "index": 6,
+                                "type": "string"
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "mysqlwriter",
+                    "parameter": {
+                        "column": [
+                            "top",
+                            "name",
+                            "firm",
+                            "score",
+                            "category",
+                            "tag",
+                            "statistics"
+                        ],
+                        "connection": [
+                          {
+                            "table": ["android_hotplayed"],
+                            "jdbcUrl": "jdbc:mysql://localhost:3306/TapTap?useUnicode=true&characterEncoding=utf-8"
+                          }
+                        ],
+                        "password": "root", 
+                        "username": "root",
+                        "preSql": ["delete from android_hotplayed"],
+                        "session":["set session sql_mode='ANSI'"],
+                        "writeMode":"insert"
+                    }
+                }
+            }
+        ],
+        "setting": {
+            "speed": {
+                "channel": "2"
+            }
+        }
+    }
+}
